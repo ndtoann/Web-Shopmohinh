@@ -21,7 +21,10 @@ SET time_zone = "+00:00";
 -- Database: `shopmohinh`
 --
 
+DROP DATABASE IF EXISTS `shopmohinh`;
+CREATE DATABASE `shopmohinh` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 -- --------------------------------------------------------
+USE `shopmohinh`;
 
 --
 -- Table structure for table `tbl_account`
