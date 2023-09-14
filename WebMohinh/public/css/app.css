@@ -405,7 +405,7 @@ main .section .product-new .tabcontent .tabcontent-product:hover .item:not(:hove
   opacity: 0.5;
 }
 
-main .section .product-new .tabcontent .tabcontent-product .item:hover .name{
+main .section .product-new .tabcontent .tabcontent-product .item:hover .name {
   color: var(--main-color);
 }
 
@@ -460,7 +460,7 @@ main .section .index-order .order-list .item {
   transition: all 0.5s ease-in-out;
 }
 
-main .section .index-order .order-list .item:hover .name{
+main .section .index-order .order-list .item:hover .name {
   color: var(--main-color);
 }
 
@@ -552,6 +552,15 @@ main .collection-body {
   background-color: #fff;
 }
 
+main .collection-body .sort {
+  padding: 10px;
+}
+
+main .collection-body .sort a {
+  font-size: 14px;
+  padding: 10px;
+}
+
 main .collection-body .list-product {
   display: flex;
   flex-wrap: wrap;
@@ -597,6 +606,10 @@ main .collection-body .list-product .item .price {
 main .collection-body .pagination {
   justify-content: right;
   padding-bottom: 50px;
+}
+
+main .collection-body .pagination .pagination .page-item.active .page-link {
+  background-color: var(--main-color);
 }
 
 @keyframes swing {
@@ -1102,6 +1115,16 @@ main .search-page .list-result .item .price {
   color: red;
 }
 
+main .search-page .pagination {
+  background-color: #fff;
+  justify-content: right;
+  padding-bottom: 50px;
+}
+
+main .search-page .pagination .pagination .page-item.active .page-link {
+  background-color: var(--main-color);
+}
+
 @media (max-width: 1000px) {
   main .search-page .list-result .item {
     flex: 0 0 50%;
@@ -1182,7 +1205,7 @@ main .checkout-content .form-info .form .form-group span {
   color: red;
 }
 
-main .checkout-content .form-info .form .form-group label{
+main .checkout-content .form-info .form .form-group label {
   font-size: 16px;
 }
 

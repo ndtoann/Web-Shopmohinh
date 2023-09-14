@@ -23,6 +23,11 @@
                     </div>
                 @endforeach
             </div>
+            <div class="pagi">
+                <div class="pagination text-center">
+                    {{ $result->appends($_GET)->links() }}
+                </div>
+            </div>
         </div>
     </section>
 @endsection

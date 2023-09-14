@@ -9,6 +9,7 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     private $product;
+    const _PER_PAGE = 10;
     public function __construct()
     {
         $this->product = new Product();
@@ -19,10 +20,19 @@ class ProductController extends Controller
         $title = 'Tất cả sản phẩm';
         $categories = $this->product->categoryList();
         $productList = $this->product->productList();
+
         $category_id = $request->category_id;
         $category = $this->product->getCategory($category_id);
-        $products = $this->product->getProducts($category_id);
 
+        $sortBy = $request->input('sort-by');
+        $sortType = $request->input('sort-type');
+        $sortArr = [
+            'sortBy' => $sortBy,
+            'sortType' => $sortType
+        ];
+
+        $products = $this->product->getProducts($category_id, $sortArr, self::_PER_PAGE);
+        
         return view('products.index', [
             'web_title' => $title,
             'categoryList' => $categories,

@@ -11,15 +11,21 @@ class Home extends Model
 {
     use HasFactory;
 
-    public function search($key_search)
+    public function search($key_search, $perPage = 0)
     {
         $rs = DB::table('tbl_products')
             ->select('*')
             ->where('status', '=', 1)
             ->where(function ($query) use ($key_search) {
                 $query->orWhere('name_prd', 'like', '%' . $key_search . '%');
-            })
-            ->get();
+            });
+
+        if (!empty($perPage)) {
+            $rs = $rs->paginate($perPage);
+        } else {
+            $rs = $rs->get();
+        }
+
         return $rs;
     }
 

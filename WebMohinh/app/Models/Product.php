@@ -32,16 +32,33 @@ class Product extends Model
         return $rs;
     }
 
-    public function getProducts($category_id){
+    public function getProducts($category_id, $sortArr = null, $perPage = 0)
+    {
         $rs = DB::table($this->table)
             ->select('*')
             ->where('status', '=', 1)
-            ->where('category_id', '=', $category_id)
-            ->get();
+            ->where('category_id', '=', $category_id);
+
+        if (!empty($sortArr)) {
+            if (!empty($sortArr['sortBy']) && $sortArr['sortType']) {
+                $sortBy = trim($sortArr['sortBy']);
+                $sortType = trim($sortArr['sortType']);
+
+                $rs = $rs->orderBy($sortBy, $sortType);
+            }
+        }
+
+        if (!empty($perPage)) {
+            $rs = $rs->paginate($perPage);
+        } else {
+            $rs = $rs->get();
+        }
+
         return $rs;
     }
 
-    public function getCategory($id){
+    public function getCategory($id)
+    {
         $rs = DB::table('tbl_categories')
             ->select('*')
             ->where('status', '=', 1)
@@ -50,7 +67,8 @@ class Product extends Model
         return $rs;
     }
 
-    public function getDetailProduct($id){
+    public function getDetailProduct($id)
+    {
         $rs = DB::table($this->table)
             ->select('*')
             ->where('status', '=', 1)
@@ -59,7 +77,8 @@ class Product extends Model
         return $rs;
     }
 
-    public function getListImgProduct($product_id){
+    public function getListImgProduct($product_id)
+    {
         $rs = DB::table('tbl_product_imgs')
             ->select('*')
             ->where('product_id', '=', $product_id)
@@ -67,7 +86,8 @@ class Product extends Model
         return $rs;
     }
 
-    public function getReviews($product_id){
+    public function getReviews($product_id)
+    {
         $rs = DB::table('tbl_reviews')
             ->select('*')
             ->where('status', '=', 1)
@@ -78,7 +98,8 @@ class Product extends Model
         return $rs;
     }
 
-    public function getRelatedProducts($category_id){
+    public function getRelatedProducts($category_id)
+    {
         $rs = DB::table($this->table)
             ->select('*')
             ->where('status', '=', 1)
