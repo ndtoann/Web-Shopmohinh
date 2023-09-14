@@ -7,7 +7,7 @@
                 <div class="wrapper">
                     <div class="item">
                         <div class="thumb">
-                            <a href="/blog/1">
+                            <a href="/blogs/1">
                                 <img src="https://file.hstatic.net/1000328919/article/may_bay_antonov_1_511b4e0b96fa43d38279f201e625760e.jpg"
                                     alt="">
                             </a>

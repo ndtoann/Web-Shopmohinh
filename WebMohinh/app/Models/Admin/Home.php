@@ -25,9 +25,9 @@ class Home extends Model
     public function checkRole($id)
     {
         $account = DB::table('tbl_account')
+            ->select('tbl_account.*', 'name_role')
             ->join('tbl_account_role', 'tbl_account.role_id', '=', 'tbl_account_role.id')
-            ->select('tbl_account.*, name_role')
-            ->where('id', '=', $id)
+            ->where('tbl_account.id', '=', $id)
             ->where('name_role', '=', 'Admin')
             ->get();
         return $account;

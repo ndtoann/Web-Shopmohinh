@@ -29,17 +29,16 @@ class HomeAdminController extends AdminController
 
         $account = $this->home->isLogin($email, $password);
 
-        if ($account != null) {
+        if (!$account->isEmpty()) {
             $checkRole = $this->home->checkRole($account[0]->id);
-            if ($checkRole != null) {
+            if (!$checkRole->isEmpty()) {
                 $fullname = $account[0]->fullname;
                 $request->session()->put('email', $email);
                 $request->session()->put('fullname', $fullname);
                 return redirect(route('dashboard'));
             }
-            return redirect('/admin')->with('msg', 'Tài khoản không hợp lệ');
         }
-        return redirect('/admin')->with('msg', 'Tài khoản hoặc mật khẩu không chính xác');
+        return redirect('/admin')->with('msg', 'Tài khoản hoặc mật khẩu không hợp lệ');
     }
 
     public function logout(Request $request)

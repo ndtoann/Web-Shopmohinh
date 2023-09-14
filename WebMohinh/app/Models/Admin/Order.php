@@ -17,7 +17,6 @@ class Order extends Model
     {
         $rs = DB::table($this->table)
             ->select('*')
-            ->where('status', '=', '1')
             ->orderBy('created_at', 'DESC');
         if (!empty($filter)) {
             $rs = $rs->where($filter);

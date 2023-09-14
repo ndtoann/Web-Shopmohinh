@@ -15,15 +15,20 @@
                                 <div class="form-group col-lg-2">
                                     <label for="status">Trạng thái</label>
                                     <select name="status" id="status" class="form-control">
-                                        <option value="waitting" {{ request('status') == 'pro' ? 'selected' : ''}}>Đang chờ</option>
-                                        <option value="deliver" {{ request('status') == 'unactive' ? 'selected' : ''}}>Đang giao hàng</option>
-                                        <option value="success" {{ request('status') == 'active' ? 'selected' : ''}}>Đã thanh toán</option>
-                                        <option value="cancel" {{ request('status') == 'active' ? 'selected' : ''}}>Đã hủy</option>
+                                        <option value="waitting" {{ request('status') == 'waitting' ? 'selected' : '' }}>
+                                            Đang chờ</option>
+                                        <option value="deliver" {{ request('status') == 'deliver' ? 'selected' : '' }}>Đang
+                                            giao hàng</option>
+                                        <option value="success" {{ request('status') == 'success' ? 'selected' : '' }}>Đã
+                                            thanh toán</option>
+                                        <option value="cancel" {{ request('status') == 'cancel' ? 'selected' : '' }}>Đã hủy
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="form-group col-lg-8">
                                     <label for="name">Nhập tên khách hàng</label>
-                                    <input type="text" name="name" id="name_customer" class="form-control" value="{{ request('name_customer') }}">
+                                    <input type="text" name="name" id="name_customer" class="form-control"
+                                        value="{{ request('name') }}">
                                 </div>
                                 <div class="form-group col-lg-2">
                                     <br>
@@ -72,17 +77,21 @@
                                                 <a href="#"
                                                     onclick="if(confirm('Cập nhật trạng thái đơn hàng thành đang giao hàng?') == true){ location.href = '/admin/don-hang/cap-nhat-tt-don-hang/{{ $item->id }}' }"
                                                     class="btn btn-inverse-primary btn-rounded btn-icon"><i
-                                                        class="mdi mdi-clipboard-check " title="Cập nhật trạng thái đơn hàng thành đang giao hàng"></i></a>
+                                                        class="mdi mdi-clipboard-check "
+                                                        title="Cập nhật trạng thái đơn hàng thành đang giao hàng"></i></a>
                                             @elseif($item->status == 2)
                                                 <a href="#"
                                                     onclick="if(confirm('Cập nhật trạng thái đơn hàng thành đã thanh toán?') == true){ location.href = '/admin/don-hang/cap-nhat-tt-don-hang/{{ $item->id }}' }"
                                                     class="btn btn-inverse-primary btn-rounded btn-icon"><i
-                                                        class="mdi mdi-clipboard-check " title="Cập nhật trạng thái đơn hàng thành đã thanh toán"></i></a>
+                                                        class="mdi mdi-clipboard-check "
+                                                        title="Cập nhật trạng thái đơn hàng thành đã thanh toán"></i></a>
                                             @endif
-                                            <a href="#"
-                                                onclick="if(confirm('Hủy đơn hàng?') == true){ location.href = '/admin/don-hang/huy-don-hang/{{ $item->id }}' }"
-                                                class="btn btn-inverse-warning btn-rounded btn-icon"><i
-                                                    class="mdi mdi-bookmark-remove "></i></a>
+                                            @if ($item->status != 3)
+                                                <a href="#"
+                                                    onclick="if(confirm('Hủy đơn hàng?') == true){ location.href = '/admin/don-hang/huy-don-hang/{{ $item->id }}' }"
+                                                    class="btn btn-inverse-warning btn-rounded btn-icon"><i
+                                                        class="mdi mdi-bookmark-remove "></i></a>
+                                            @endif
                                             <a href="#"
                                                 onclick="if(confirm('Xác nhận xóa?') == true){ location.href = '/admin/don-hang/xoa-don-hang/{{ $item->id }}' }"
                                                 class="btn btn-inverse-danger btn-rounded btn-icon"><i
